@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <title>Call-Apply-Bind</title>
+
+</head>
+
+<body>
+  <h1 style="text-align: center; font-style: italic;">Call-Apply-bind</h1>
+  <h2 style="text-align: center; color: purple;">JavaScript Functions</h2>
+
+  <div class="ml-5">
+
+    <div class="card w-75 mt-5">
+      <div class="card-body">
+        <h5 class="card-title">Call</h5>
+        <p class="card-text">The call() method calls a function with a given this value and arguments provided
+          individually.</p>
+        <p style="font-size: large; font-weight: 600;">1.Example for Call </p>
+        <p id="demo"></p>
+        <p id="demoo"></p>
+        <img class="card-img-bottom" src="Call.png" alt="Card image cap">
+        <a href="#" class="btn btn-primary">More About Call</a>
+      </div>
+    </div>
+    <div class="card w-75 mt-5">
+      <div class="card-body">
+        <h5 class="card-title">Call with argruments</h5>
+        <p class="card-text">The call() method calls a function with a given this value and arguments provided
+          individually.</p>
+
+        <p style="font-size: large; font-weight: 600;">2.Example for Call with argruments </p>
+        <p id="demooo"></p>
+        <img class="card-img-bottom" src="Call.png" alt="Card image cap">
+
+        <a href="#" class="btn btn-primary">More About Call</a>
+      </div>
+    </div>
+    <div class="card w-75 mt-5">
+      <div class="card-body">
+        <h5 class="card-title">Apply</h5>
+        <p class="card-text">The only difference between how they work is that call() expects all parameters to be
+          passed
+          in individually, whereas apply() expects an array of all of our parameters.
+        </p>
+
+        <p style="font-size: large; font-weight: 600;">2.Example forApply </p>
+        <p id="demo1"></p>
+        <img class="card-img-bottom" src="Apply.png" alt="Card image cap">
+
+
+        <a href="#" class="btn btn-primary">More About Apply</a>
+      </div>
+    </div>
+    <div class="card w-75 mt-5">
+      <div class="card-body">
+        <h5 class="card-title">Bind</h5>
+        <p class="card-text">The bind() method creates a new function that, when called, has its this keyword set to the
+          provided value.
+        </p>
+
+        <p style="font-size: large; font-weight: 600;">2.Example for Bind </p>
+        <p id="bind"></p>
+        <p id="bind2"></p>
+        <p id="bind3"></p>
+        <img class="card-img-bottom" src="Bind.png" alt="Card image cap">
+
+
+        <a href="#" class="btn btn-primary">More about Bind</a>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+  </script>
+  <script>
+    const person = {
+      fullName: function () {
+        return this.firstName + " " + this.lastName;
+      }
+    }
+    const persons = {
+      fullName: function (city, country) {
+        return this.firstName + " " + this.lastName + "," + city + "," + country;
+      }
+    }
+    const person1 = {
+      firstName: "Aksh",
+      lastName: "Purwar"
+    }
+    const person2 = {
+      firstName: "Komal",
+      lastName: "ll"
+    }
+    document.getElementById("demo").innerHTML = person.fullName.call(person1); //not print
+    document.getElementById("demoo").innerHTML = person.fullName.call(person2);
+    //With argruments
+    document.getElementById("demooo").innerHTML = persons.fullName.call(person1, "Etawah", "U.P");
+    //apply
+    const personapply = {
+      fullName: function (city, country) {
+        return this.firstName + " " + this.lastName + "," + city + "," + country;
+      }
+    }
+
+    const person3 = {
+      firstName: "Akshara",
+      lastName: "Purwar"
+    }
+
+    document.getElementById("demo1").innerHTML = personapply.fullName.apply(person3, ["Etawah", "U.P"]); //print
+
+    // Here, this refers to global "window" object  
+    this.name = "Java";
+    var website = {
+      name: "Js",
+      getName: function () {
+        return this.name;
+      }
+    };
+
+    //document.writeln(website.getName());
+    document.getElementById("bind").innerHTML = website.getName();
+
+    //It invokes at global scope  
+    var retrieveName = website.getName;
+    //document.writeln(retrieveName());
+    document.getElementById("bind2").innerHTML = retrieveName();
+
+    var boundGetName = retrieveName.bind(website);
+    //document.writeln(boundGetName());
+    document.getElementById("bind3").innerHTML = boundGetName();
+  </script>
+</body>
+
+</html>
